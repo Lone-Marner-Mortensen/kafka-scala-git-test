@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  producer:
+    image: producer:latest
+    container_name: producer
+    ports:
+      - 8085:8085
+    environment:
+      KAFKA_BROKER_URL: kafka:29092
+      DEFAULT_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+
+networks:
+  default:
+    external:
+      name: template_network

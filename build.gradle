@@ -1,0 +1,69 @@
+defaultTasks 'prepare', 'startContainers', 'producer'
+
+task prepare  {
+
+    doFirst{
+
+        exec{
+           executable "docker"
+           args "network", "create", "template_network"
+
+           ignoreExitValue true
+        }
+
+        exec {
+           //Auto-generate code that can handle avro conversion
+           executable 'sbt'
+           args 'avro/avroScalaGenerateSpecific'
+
+           //Create images for modules in this project
+           executable 'sbt'
+           args 'docker:publishLocal'
+        }
+    }
+}
+
+task startContainers(dependsOn: prepare)  {
+
+    doFirst {
+        exec {
+            executable "docker-compose"
+            args "up", "-d"
+        }
+
+        exec {
+            commandLine './docker/scripts/configure-postgres-connection.sh'
+        }
+    }
+}
+
+task producer(dependsOn: startContainers)  {
+
+    doFirst {
+        exec {
+            executable "docker-compose"
+            args "-f", "docker-compose-producer.yml", "up", "-d"
+        }
+    }
+}
+
+task stream  {
+
+    doFirst {
+        exec {
+            executable "docker-compose"
+            args "-f", "docker-compose-stream.yml", "up", "-d"
+        }
+    }
+}
+
+task consumer  {
+
+    doFirst {
+        exec {
+            executable "docker-compose"
+            args "-f", "docker-compose-consumer.yml", "up", "-d"
+        }
+    }
+}
+

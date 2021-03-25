@@ -1,0 +1,14 @@
+# Project exclude paths
+/avro/target/
+/avro/target/scala-2.12/classes/
+/common/target/
+/common/target/scala-2.12/classes/
+/consumer/target/
+/consumer/target/scala-2.12/classes/
+/producer/target/
+/producer/target/scala-2.12/classes/
+/project/project/target/
+/project/target/
+/stream/target/
+/stream/target/scala-2.12/classes/
+/target/

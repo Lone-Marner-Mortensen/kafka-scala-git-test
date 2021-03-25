@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  stream:
+    image: stream:latest
+    container_name: stream
+    ports:
+      - 8087:8087
+    environment:
+      KAFKA_BROKER_URL: kafka:29092
+      DEFAULT_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+
+networks:
+  default:
+    external:
+      name: template_network

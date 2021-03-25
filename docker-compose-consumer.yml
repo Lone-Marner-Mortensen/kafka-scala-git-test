@@ -1,0 +1,16 @@
+version: '3'
+services:
+
+  consumer:
+    image: consumer:latest
+    container_name: consumer
+    ports:
+      - 8086:8086
+    environment:
+      KAFKA_BROKER_URL: kafka:29092
+      DEFAULT_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+
+networks:
+  default:
+    external:
+      name: template_network
