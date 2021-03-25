@@ -2,7 +2,7 @@ version := "0.1"
 
 scalaVersion := "2.13.5"
 
-lazy val `kafka-scala-git-test` = project
+lazy val `kafka-scala-template` = project
   .in(file("."))
   .aggregate(
     avro,
