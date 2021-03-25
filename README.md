@@ -21,9 +21,13 @@ The build.gradle file (in the root folder) contains all the necessary commands. 
 gradle -t, then all the default tasks will run (that is prepare, startContainers, producer). You can easily
 change the default tasks in the top of build.gradle. Now you can type: docker ps, to see which containers have started.
 You should now be able to see that the producer produces messages that are automatically transferred to a postgres container.
-Just type: docker exec -it postgres bash -c 'psql -U postgres demo -c "select * from test1"'. If you want to start the
+Just type: docker exec -it postgres bash -c 'psql -U postgres demo -c "select * from test1"' 
+(or psql -h localhost -p 5432 -U postgres, if you have postgres installed). If you want to start the
 stream or consumer container, you just have to type: gradle -t stream or gradle -t consumer. You can see what the
 consumer prints by typing: docker-compose -f docker-compose-consumer.yml logs consumer.
+
+Troubleshoot: If you get errors about port 5432 is already in use or conflicts with other docker-containers.
+You can try: sudo service postgresql stop or docker stop <container-name> or docker system prune -a.
 
 ## How to debug it
 You can see the logs of a container x by typing: docker-compose logs x or docker-compose -f docker-compose-x.yml logs x.
