@@ -2,6 +2,7 @@
 
 This is a template for working with kafka using scala.
 Everything is dockerized and all messages are sent in avro format using auto generated avro-code. 
+(However, they can easily be changed to another format see below).
 This template is targeted people who use Linux/Ubuntu/Mac and Intellij. 
 
 ## Table of Contents
@@ -22,8 +23,8 @@ gradle -t, then all the default tasks will run (that is prepare, startContainers
 change the default tasks in the top of build.gradle. Now you can type: docker ps, to see which containers have started.
 You should now be able to see that the producer produces messages that are automatically transferred to a postgres container.
 Just type: docker exec -it postgres bash -c 'psql -U postgres demo -c "select * from test1"' 
-(or psql -h localhost -p 5432 -U postgres, if you have postgres installed). If you want to start the
-stream or consumer container, you just have to type: gradle -t stream or gradle -t consumer. You can see what the
+(you can also access the container by typing: psql -h localhost -p 5432 -U postgres, if you have postgres installed. Password = password, database = demo).
+If you want to start the stream or consumer container, you just have to type: gradle -t stream or gradle -t consumer. You can see what the
 consumer prints by typing: docker-compose -f docker-compose-consumer.yml logs consumer.
 
 Troubleshoot: If you get errors about port 5432 is already in use or conflicts with other docker-containers.
