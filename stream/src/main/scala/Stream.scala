@@ -5,7 +5,7 @@ import org.apache.kafka.streams.kstream.{Consumed, KStream}
 import org.apache.kafka.streams.{KafkaStreams, _}
 
 
-object stream extends App{
+object Stream extends App{
 
   val valueSpecificAvroSerde = new SpecificAvroSerde[ExampleRecord]
   valueSpecificAvroSerde.configure(StreamProperties.serdeConfig, false)
@@ -17,7 +17,7 @@ object stream extends App{
 
   //Write to topic Topics.Test2
   stream
-    .mapValues{v => new ExampleRecord(v.timestamp, s"${v.msg}!!!")}
+    .mapValues{v => println(v.msg); new ExampleRecord(v.timestamp, s"${v.msg}!!!")}
     .to(Topics.Test2)
 
   val kafkaStreams = new KafkaStreams(builder.build, StreamProperties.defaultAvro("stream-template"))

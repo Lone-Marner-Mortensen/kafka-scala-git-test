@@ -6,7 +6,7 @@ import java.time.Duration
 import java.util.Properties
 import scala.collection.JavaConversions._
 
-object consumer extends App {
+object Consumer extends App {
 
   val brokerUrl = sys.env("KAFKA_BROKER_URL")
   val schemaUrl = sys.env("DEFAULT_SCHEMA_REGISTRY_URL")

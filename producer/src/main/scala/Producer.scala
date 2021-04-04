@@ -5,7 +5,7 @@ import org.apache.kafka.common.serialization.StringSerializer
 import java.time.Instant
 import java.util.Properties
 
-object producer extends App{
+object Producer extends App{
 
   val brokerUrl = sys.env("KAFKA_BROKER_URL")
   val schemaUrl = sys.env("DEFAULT_SCHEMA_REGISTRY_URL")

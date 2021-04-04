@@ -23,12 +23,14 @@ config="{
 "\"pk.fields\"": "\"MESSAGE_KEY\""
 }"
 
+#Configure kafka-connect.
 cmd() {
    curl --silent -X PUT http://localhost:8083/connectors/sink-jdbc-postgres/config -H "Content-Type: application/json" -d "$config"
 }
+
+#Retry till kafka-connect can accepts request
 responseBody=$(cmd); exitCode=$?
-#retry until kafka-connect is ready to get requests
-while [ $(expr length "$responseBody") == 0 ]||[ $exitCode != 0 ]; do
+while [ $(expr length "$responseBody") == 0 ] || [ $exitCode != 0 ]; do
   sleep 5
   echo "waiting for connection to kafka-connect"
   responseBody=$(cmd); exitCode=$?

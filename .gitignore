@@ -12,3 +12,5 @@
 /stream/target/
 /stream/target/scala-2.12/classes/
 /target/
+/.idea/
+/.gradle/
