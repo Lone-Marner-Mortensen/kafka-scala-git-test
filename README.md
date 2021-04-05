@@ -3,7 +3,7 @@
 This is a template for working with kafka using scala.
 Everything is dockerized and all messages are sent in avro format using auto generated avro-code. 
 (However, they can easily be changed to another format see below).
-This template is targeted people who use Linux/Ubuntu/Mac and Intellij. 
+This template is tested on two Linux computers having Intellij and gradle installed. 
 
 ## Table of Contents
 
