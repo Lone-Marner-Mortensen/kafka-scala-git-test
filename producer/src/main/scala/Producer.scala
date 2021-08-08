@@ -22,16 +22,16 @@ object Producer extends App{
   //Safety
   props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true")
   //Other tuning
-  //Take a look here: https://strimzi.io/blog/2020/10/15/producer-tuning/
+  //Take a look here: https://strimzi.io/blog/2020/10/15/producer-tuning/ (or tuning_producers.pdf from root-folder)
 
   val producer = new KafkaProducer[String, ExampleRecord](props)
 
   val producerCallback: Callback = new Callback {
     override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit = {
 
-      if(!Option(exception).isEmpty) {
+      if(Option(exception).isDefined) {
        println("Not Fine: " + exception.getMessage)
-          producer.close();
+          producer.close()
       }
     }
   }
