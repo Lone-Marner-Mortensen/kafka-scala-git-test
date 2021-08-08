@@ -17,7 +17,7 @@ object Consumer extends App {
   props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100")
   //Tuning
   //props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "100");//Might be good in real life
-  //Take a look here: https://strimzi.io/blog/2021/01/07/consumer-tuning/
+  //Take a look here: https://strimzi.io/blog/2021/01/07/consumer-tuning/ (or tuning_consumers.pdf from root-folder)
 
   // avro part (deserializer)
   props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer].getName)
