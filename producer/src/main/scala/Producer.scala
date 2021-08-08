@@ -30,7 +30,7 @@ object Producer extends App{
     override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit = {
 
       if(Option(exception).isDefined) {
-       println("Not Fine: " + exception.getMessage)
+          println("Not Fine: " + exception.getMessage)
           producer.close()
       }
     }
