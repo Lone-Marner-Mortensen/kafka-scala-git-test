@@ -26,9 +26,12 @@ Just type: docker exec -it postgres bash -c 'psql -U postgres demo -c "select * 
 (you can also access the container by typing: psql -h localhost -p 5432 -U postgres, if you have postgres installed. Password = password, database = demo).
 If you want to start the stream or consumer container, you just have to type: gradle -t stream or gradle -t consumer. You can see what the
 consumer prints by typing: docker-compose -f docker-compose-consumer.yml logs consumer.
-
-Troubleshoot: If you get errors about port 5432 is already in use or conflicts with other docker-containers.
+####Troubleshoot: 
+If you are using a Macbook, the start-up script docker/scripts/configure-postgres-connection.sh might not work for you. You might need to replace
+[ $(expr length "$responseBody") == 0 ] with [ -z "$responseBody" ]. 
+If you get errors about port 5432 is already in use or conflicts with other docker-containers.
 You can try: sudo service postgresql stop or docker stop <container-name> or docker system prune -a.
+
 
 ## How to debug it
 You can see the logs of a container x by typing: docker-compose logs x or docker-compose -f docker-compose-x.yml logs x.
